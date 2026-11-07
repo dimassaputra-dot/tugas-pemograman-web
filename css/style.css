@@ -42,17 +42,37 @@ header {
     text-transform: uppercase;
 }
 
-.nav-right {
+..nav-right {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 18px;
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 600;
 }
 
-.nav-right a {
-    text-decoration: none;
+.currency {
+    display: flex;
+    align-items: center;
+    gap: 6px;
     color: #000;
+}
+
+.flag-icon {
+    width: 20px;
+    height: auto;
+    object-fit: contain;
+    border: 1px solid #ddd; /* Memberikan border tipis pada bendera */
+}
+
+.nav-icon {
+    color: #000;
+    font-size: 18px;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.nav-icon:hover {
+    color: #d90429; /* Berubah merah saat di-hover */
 }
 
 /* ===== HERO SLIDER FULL SCREEN ===== */

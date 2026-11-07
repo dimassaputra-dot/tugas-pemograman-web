@@ -13,23 +13,25 @@ $result = mysqli_query($koneksi, $query);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DUEVE WEARHOUSE</title>
     <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome CDN untuk Ikon Line Minimalis -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
     <!-- Header Melayang -->
     <header>
-        <div class="nav-left">
-            <span>&#9776;</span>
-        </div>
-        
-        <div class="logo">DUEVE</div>
-
         <div class="nav-right">
-            <span>IDR</span>
-            <a href="#">🔍</a>
-            <a href="#">🛍️</a>
-            <a href="admin/login.php">👤</a>
-        </div>
+    <!-- Bendera Indonesia + Teks IDR -->
+    <div class="currency">
+        <img src="https://flagcdn.com/w20/id.png" alt="ID Flag" class="flag-icon">
+        <span>IDR</span>
+    </div>
+    
+    <!-- Ikon Search, Cart, & Profile bergaya Line/Outline -->
+    <a href="#" class="nav-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
+    <a href="#" class="nav-icon"><i class="fa-solid fa-bag-shopping"></i></a>
+    <a href="admin/login.php" class="nav-icon"><i class="fa-regular fa-user"></i></a>
+</div>
     </header>
 
     <!-- Slider Fullscreen -->
