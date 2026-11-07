@@ -41,6 +41,7 @@ $result = mysqli_query($koneksi, $query);
                 <a href="#catalogue" class="btn-shop">SHOP NOW</a>
             </div>
         </div>
+        </div>
 
         <div class="slide">
             <img src="img/banner2.jpg" alt="Collection 2">
@@ -71,4 +72,4 @@ $result = mysqli_query($koneksi, $query);
 </body>
 </html>
 
-        
+    
