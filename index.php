@@ -44,7 +44,7 @@ $result = mysqli_query($koneksi, $query);
     <div class="slider-container">
         <!-- Slide 1 -->
         <div class="slide active">
-            <img src="img/banner1.jpg" alt="Collection 1">
+            <img src="img/banner1.jpg?v=1" alt="Collection 1">
             <div class="slide-content">
                 <div class="slide-title">CH18 - AFTER CLASS</div>
                 <a href="products.php" class="btn-shop">SHOP NOW</a>
@@ -53,7 +53,7 @@ $result = mysqli_query($koneksi, $query);
 
         <!-- Slide 2 -->
         <div class="slide">
-            <img src="img/banner2.jpg" alt="Collection 2">
+            <img src="img/banner2.jpg?v=1" alt="Collection 2">
             <div class="slide-content">
                 <div class="slide-title">ESSENTIAL MODERN APPAREL</div>
                 <a href="products.php" class="btn-shop">SHOP NOW</a>
@@ -62,13 +62,13 @@ $result = mysqli_query($koneksi, $query);
 
         <!-- Slide 3 -->
         <div class="slide">
-            <img src="img/banner3.jpg" alt="Collection 3">
+            <img src="img/banner3.jpg?v=1" alt="Collection 3">
             <div class="slide-content">
                 <div class="slide-title">NEW SEASON 2026</div>
                 <a href="products.php" class="btn-shop">SHOP NOW</a>
             </div>
         </div>
-
+        
         <!-- Tombol Panah Kiri & Kanan -->
         <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
         <a class="next" onclick="changeSlide(1)">&#10095;</a>
