@@ -49,7 +49,7 @@ $result = mysqli_query($koneksi, $query);
             <img src="img/banner2.jpg" alt="Collection 2">
             <div class="slide-content">
                 <div class="slide-title">ESSENTIAL MODERN APPAREL</div>
-                <a href="#catalogue" class="btn-shop">EXPLORE</a>
+                <a href="products.php" class="btn-shop">SHOP NOW</a>
             </div>
         </div>
 
@@ -57,7 +57,7 @@ $result = mysqli_query($koneksi, $query);
             <img src="img/banner3.jpg" alt="Collection 3">
             <div class="slide-content">
                 <div class="slide-title">NEW SEASON 2026</div>
-                <a href="#catalogue" class="btn-shop">VIEW MORE</a>
+                <a href="products.php" class="btn-shop">SHOP NOW</a>
             </div>
         </div>
 
@@ -66,12 +66,39 @@ $result = mysqli_query($koneksi, $query);
     </div>
 
     <!-- Katalog Produk -->
-    <section class="catalog-container" id="catalogue">
-        <!-- isi katalog -->
-    </section>
-
-    <script src="js/script.js"></script>
-</body>
-</html>
+<section class="catalog-container" id="catalogue">
+    <h2 style="text-align: center; margin-bottom: 30px;">SEMUA PRODUK</h2>
+    
+    <div class="product-grid">
+        <?php
+        require_once 'config/koneksi.php';
+        $query = mysqli_query($koneksi, "SELECT * FROM products ORDER BY id DESC");
+        
+        if (mysqli_num_rows($query) > 0) :
+            while ($p = mysqli_fetch_assoc($query)) :
+                // Jika kolom gambar di database kosong, gunakan gambar default
+                $gambar = !empty($p['gambar']) ? $p['gambar'] : 'banner1.jpg';
+        ?>
+            <div class="product-card">
+                <div class="img-box">
+                    <img src="assets/uploads/<?= $gambar; ?>" alt="<?= $p['nama_produk']; ?>">
+                </div>
+                <h3><?= strtoupper($p['nama_produk']); ?></h3>
+                <p class="price">Rp <?= number_format($p['harga'] * 1000, 0, ',', '.'); ?></p>
+                
+                <?php if ($p['stok'] > 0) : ?>
+                    <span class="badge">STOK TERSEDIA</span>
+                <?php else : ?>
+                    <span class="badge" style="background-color: #e74c3c;">STOK HABIS</span>
+                <?php endif; ?>
+            </div>
+        <?php 
+            endwhile;
+        else :
+        ?>
+            <p style="text-align: center; width: 100%;">Belum ada produk yang ditambahkan.</p>
+        <?php endif; ?>
+    </div>
+</section>
 
     
