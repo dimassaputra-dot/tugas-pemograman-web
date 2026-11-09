@@ -20,31 +20,38 @@ $result = mysqli_query($koneksi, $query);
 
     <!-- Header Melayang -->
     <header>
-        <div class="nav-right">
-    <!-- Bendera Indonesia + Teks IDR -->
-    <div class="currency">
-        <img src="https://flagcdn.com/w20/id.png" alt="ID Flag" class="flag-icon">
-        <span>IDR</span>
+    <!-- 1. Bagian Kiri (Bendera & Mata Uang) -->
+    <div class="nav-left">
+        <div class="currency">
+            <img src="https://flagcdn.com/w20/id.png" alt="ID Flag" class="flag-icon">
+            <span>IDR</span>
+        </div>
     </div>
-    
-    <!-- Ikon Search, Cart, & Profile bergaya Line/Outline -->
-    <a href="#" class="nav-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
-    <a href="#" class="nav-icon"><i class="fa-solid fa-bag-shopping"></i></a>
-    <a href="admin/login.php" class="nav-icon"><i class="fa-regular fa-user"></i></a>
-</div>
-    </header>
+
+    <!-- 2. Bagian Tengah (Tempat Logo - Kosong dulu) -->
+    <div class="logo">
+    </div>
+
+    <!-- 3. Bagian Kanan (Ikon Search, Cart, Profile) -->
+    <div class="nav-right">
+        <a href="#" class="nav-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
+        <a href="#" class="nav-icon"><i class="fa-solid fa-bag-shopping"></i></a>
+        <a href="admin/login.php" class="nav-icon"><i class="fa-regular fa-user"></i></a>
+    </div>
+</header>
 
     <!-- Slider Fullscreen -->
     <div class="slider-container">
+        <!-- Slide 1 -->
         <div class="slide active">
             <img src="img/banner1.jpg" alt="Collection 1">
             <div class="slide-content">
                 <div class="slide-title">CH18 - AFTER CLASS</div>
-                <a href="#catalogue" class="btn-shop">SHOP NOW</a>
+                <a href="products.php" class="btn-shop">SHOP NOW</a>
             </div>
         </div>
-        </div>
 
+        <!-- Slide 2 -->
         <div class="slide">
             <img src="img/banner2.jpg" alt="Collection 2">
             <div class="slide-content">
@@ -53,6 +60,7 @@ $result = mysqli_query($koneksi, $query);
             </div>
         </div>
 
+        <!-- Slide 3 -->
         <div class="slide">
             <img src="img/banner3.jpg" alt="Collection 3">
             <div class="slide-content">
@@ -61,6 +69,7 @@ $result = mysqli_query($koneksi, $query);
             </div>
         </div>
 
+        <!-- Tombol Panah Kiri & Kanan -->
         <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
         <a class="next" onclick="changeSlide(1)">&#10095;</a>
     </div>
@@ -101,4 +110,4 @@ $result = mysqli_query($koneksi, $query);
     </div>
 </section>
 
-    
+<script src="js/script.js"></script>

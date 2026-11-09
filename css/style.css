@@ -363,3 +363,50 @@ header {
     background-color: #ffcccc;
     color: #c0392b;
 }
+.logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 15px;
+}
+
+.logo h1 {
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    font-size: 30px;
+    letter-spacing: 3px;
+    color: #cc0000;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.logo a {
+    text-decoration: none;
+}header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999; /* Agar melayang di atas gambar slider */
+    background: transparent;
+}
+
+.logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 15px;
+    z-index: 1000;
+}
+
+.logo h1 {
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    font-size: 32px;
+    letter-spacing: 3px;
+    color: #cc0000; /* Warna merah tebal */
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.logo a {
+    text-decoration: none;
+}

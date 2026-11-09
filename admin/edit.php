@@ -1,27 +1,29 @@
 <?php
-session_start();
-if (!isset($_SESSION['login'])) {
-    header("Location: login.php");
-    exit;
-}
-
-require_once '../config/koneksi.php';
+include '../config/koneksi.php';
 
 $id = $_GET['id'];
-$result = mysqli_query($koneksi, "SELECT * FROM products WHERE id = '$id'");
-$data = mysqli_fetch_assoc($result);
+$query = mysqli_query($koneksi, "SELECT * FROM products WHERE id='$id'");
+$data = mysqli_fetch_array($query);
 
 if (isset($_POST['update'])) {
-    $nama = mysqli_real_escape_string($koneksi, $_POST['nama_produk']);
-    $harga = mysqli_real_escape_string($koneksi, $_POST['harga']);
-    $deskripsi = mysqli_real_escape_string($koneksi, $_POST['deskripsi']);
+    $nama_produk = $_POST['nama_produk'];
+    $harga       = $_POST['harga'];
+    $stok        = $_POST['stok'];
+    $deskripsi   = $_POST['deskripsi'];
+    $gambar      = $_POST['gambar'];
 
-    $query = "UPDATE products SET nama_produk='$nama', harga='$harga', deskripsi='$deskripsi' WHERE id='$id'";
-    if (mysqli_query($koneksi, $query)) {
+    $update = mysqli_query($koneksi, "UPDATE products SET 
+        nama_produk='$nama_produk', 
+        harga='$harga', 
+        stok='$stok', 
+        deskripsi='$deskripsi', 
+        gambar='$gambar' 
+        WHERE id='$id'");
+
+    if ($update) {
         header("Location: dashboard.php");
-        exit;
     } else {
-        $error = "Gagal memperbarui data.";
+        echo "Gagal update data!";
     }
 }
 ?>
@@ -31,29 +33,43 @@ if (isset($_POST['update'])) {
 <head>
     <meta charset="UTF-8">
     <title>Edit Produk - DUEVE</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"], input[type="number"], textarea { width: 300px; padding: 8px; }
+    </style>
 </head>
 <body>
     <h2>Edit Produk</h2>
-    <a href="dashboard.php">← Batal</a>
-
-    <?php if (isset($error)) : ?>
-        <p style="color: red;"><?= $error; ?></p>
-    <?php endif; ?>
+    <a href="dashboard.php">&larr; Batal</a><br><br>
 
     <form action="" method="POST">
-        <div>
-            <label>Nama Produk:</label><br>
-            <input type="text" name="nama_produk" value="<?= htmlspecialchars($data['nama_produk']); ?>" required>
+        <div class="form-group">
+            <label>Nama Produk:</label>
+            <input type="text" name="nama_produk" value="<?= $data['nama_produk']; ?>" required>
         </div>
-        <div>
-            <label>Harga:</label><br>
-            <input type="number" name="harga" value="<?= htmlspecialchars($data['harga']); ?>" required>
+
+        <div class="form-group">
+            <label>Harga:</label>
+            <input type="number" name="harga" value="<?= $data['harga']; ?>" required>
         </div>
-        <div>
-            <label>Deskripsi:</label><br>
-            <textarea name="deskripsi" rows="4" required><?= htmlspecialchars($data['deskripsi']); ?></textarea>
+
+        <div class="form-group">
+            <label>Stok:</label>
+            <input type="number" name="stok" value="<?= $data['stok']; ?>" required>
         </div>
-        <br>
+
+        <div class="form-group">
+            <label>Deskripsi:</label>
+            <textarea name="deskripsi" rows="4"><?= $data['deskripsi']; ?></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Nama File Gambar (misal: hoodie-black.jpg):</label>
+            <input type="text" name="gambar" value="<?= $data['gambar']; ?>" placeholder="nama-file.jpg" required>
+        </div>
+
         <button type="submit" name="update">Update Produk</button>
     </form>
 </body>

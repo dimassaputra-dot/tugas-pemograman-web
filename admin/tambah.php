@@ -1,23 +1,20 @@
 <?php
-session_start();
-if (!isset($_SESSION['login'])) {
-    header("Location: login.php");
-    exit;
-}
+include '../config/koneksi.php';
 
-require_once '../config/koneksi.php';
+if (isset($_POST['simpan'])) {
+    $nama_produk = $_POST['nama_produk'];
+    $harga       = $_POST['harga'];
+    $stok        = $_POST['stok'];
+    $deskripsi   = $_POST['deskripsi'];
+    $gambar      = $_POST['gambar'];
 
-if (isset($_POST['tambah'])) {
-    $nama = mysqli_real_escape_string($koneksi, $_POST['nama_produk']);
-    $harga = mysqli_real_escape_string($koneksi, $_POST['harga']);
-    $deskripsi = mysqli_real_escape_string($koneksi, $_POST['deskripsi']);
+    $simpan = mysqli_query($koneksi, "INSERT INTO products (nama_produk, harga, stok, deskripsi, gambar) 
+        VALUES ('$nama_produk', '$harga', '$stok', '$deskripsi', '$gambar')");
 
-    $query = "INSERT INTO products (nama_produk, harga, deskripsi) VALUES ('$nama', '$harga', '$deskripsi')";
-    if (mysqli_query($koneksi, $query)) {
+    if ($simpan) {
         header("Location: dashboard.php");
-        exit;
     } else {
-        $error = "Gagal menambah data produk.";
+        echo "Gagal tambah data!";
     }
 }
 ?>
@@ -26,31 +23,45 @@ if (isset($_POST['tambah'])) {
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Tambah Produk - DUEVE</title>
+    <title>Tambah Produk Baru - DUEVE</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"], input[type="number"], textarea { width: 300px; padding: 8px; }
+    </style>
 </head>
 <body>
     <h2>Tambah Produk Baru</h2>
-    <a href="dashboard.php">← Kembali ke Dashboard</a>
-    
-    <?php if (isset($error)) : ?>
-        <p style="color: red;"><?= $error; ?></p>
-    <?php endif; ?>
+    <a href="dashboard.php">&larr; Batal</a><br><br>
 
     <form action="" method="POST">
-        <div>
-            <label>Nama Produk:</label><br>
+        <div class="form-group">
+            <label>Nama Produk:</label>
             <input type="text" name="nama_produk" required>
         </div>
-        <div>
-            <label>Harga:</label><br>
+
+        <div class="form-group">
+            <label>Harga:</label>
             <input type="number" name="harga" required>
         </div>
-        <div>
-            <label>Deskripsi:</label><br>
-            <textarea name="deskripsi" rows="4" required></textarea>
+
+        <div class="form-group">
+            <label>Stok:</label>
+            <input type="number" name="stok" value="10" required>
         </div>
-        <br>
-        <button type="submit" name="tambah">Simpan Produk</button>
+
+        <div class="form-group">
+            <label>Deskripsi:</label>
+            <textarea name="deskripsi" rows="4"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Nama File Gambar (misal: hoodie-black.jpg):</label>
+            <input type="text" name="gambar" placeholder="contoh: hoodie.jpg" required>
+        </div>
+
+        <button type="submit" name="simpan">Simpan Produk</button>
     </form>
 </body>
 </html>
